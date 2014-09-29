@@ -6,10 +6,6 @@ resolutions = [('mdpi', 1), ('hdpi', 1.5), ('xhdpi', 2), ('xxhdpi', 3), ('xxxhdp
 
 outputs = []
 
-base_file = "transparent_map_buttons.svg"
-base = (48, 41)
-ids = ['btn_top_on', 'btn_top_off', 'btn_bottom_on', 'btn_bottom_off']
-
 ink = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
 
 fh = open('./ink.js','r')
