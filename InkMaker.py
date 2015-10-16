@@ -14,10 +14,13 @@ class InkMaker:
         self.ink = "/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
         self.convert = "/usr/local/bin/convert"
 
-    def load_data(self):
-        fh = open(self.filename, 'r')
-        self.data = json.load(fh)
-        fh.close()
+    def handle(self):
+        with open(self.filename, 'r') as fh:
+            self.data = json.load(fh)
+            self.make_directories()
+            self.build_inks()
+            self.do_ink_output()
+            self.do_resize_output()
 
     def make_directories(self):
         for res in self.resolutions_and:
@@ -55,12 +58,6 @@ class InkMaker:
             print "{0} {1} -gravity center -background transparent -extent {2}x{3} {1}"\
                 .format(self.convert, res[0], res[1], res[2])
 
-    def handle(self):
-        self.load_data()
-        self.make_directories()
-        self.build_inks()
-        self.do_ink_output()
-        self.do_resize_output()
 
 if __name__ == "__main__":
     im = InkMaker('./ink.js')
